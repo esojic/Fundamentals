@@ -1,3 +1,5 @@
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/PkQd3fDcAMw/0.jpg)](https://www.youtube.com/watch?v=PkQd3fDcAMw)
+
 - OSI Model
     - Hello my name is Jose and this presentation consists of a general explanation of the OSI model, why its important, vulnerabilities associated with each layer and their common defense strategies
 - What is the OSI Model?
