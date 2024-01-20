@@ -1,0 +1,105 @@
+- OSI Model
+    - Hello my name is Jose and this presentation consists of a general explanation of the OSI model, why its important, vulnerabilities associated with each layer and their common defense strategies
+- What is the OSI Model?
+    - Today we are talking about the OSI Model, which is a reference model that helps visualize the movement of network traffic, it is a guide for IT professionals to be able to communicate with each other when needed for things like: troubleshooting and investigations
+    - OSI is an acronym for Open Systems Interconnection
+    - It is not the end all be all system or protocol but a guide for network communication
+    - Various different IT disciplines leverage the model such as: network engineers, cybersecurity analysts, and software developers
+    - The model consists of 7 layers from bottom to top and are represented as:
+        - Physical, Data Link, Network, Transport, Session, Presentation, Application
+        - each of these layers use a set of different protocols that helps ensure the successful transmission of data across a network
+    - A way to remember this is: Please Do Not Throw Sausage Pizza Away
+- Layer 1 - Physical
+    - The OSI model begins at the bottom with layer 1 known as the physical layer
+    - Layer 1 accounts for the physical aspects of networking such as connectors, ethernet cables, and the signals they carry
+    - Associated Protocols: Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11), 
+    Fiber Optic, Bluetooth, USB (Universal Serial Bus).
+    - Attacks:
+        - Sniffing where attackers capture network traffic for eavesdropping
+        - Physical Tampering of cables, like splicing or cutting
+        - Natural Disasters that would cause a system to go offline
+    - Defenses that would mitigate against these attacks are:
+        - Encrypting data to protect it from being read in plain text
+        - installing physical security measures like locks, cabinets, and implementing access controls
+        - Ensuring backups/redundancies to preserve data
+- Layer 2 - Data Link Layer
+    - The data link layer manages how data is transferred from device to device without errors within the network
+        - the overall goal of layer 2 to is hop to hop delivery, meaning layer 2 is responsible from moving data from one device to another by using MAC addressing to properly identify the receiving device
+    - Associated Protocols:
+        - ARP (address resolution protocol): protocol used to link IP (layer 3) to MAC address (layer 2) within a local network
+        - MAC (Media Access Control): unique set of characters to identify a device connected to a network
+    - Attacks:
+        - MAC address spoofing: where an attacker impersonates a device by using its MAC address to get information sent to the imposter instead of the valid device
+        - MAC flooding: what happens when the MAC table of a switch is overloaded and floods, resulting in potential network disruptions and vulnerabilities
+        - ARP spoofing: which is a type of attack that sends malicious ARP requests on a local network in order to associate the attacker’s MAC address with the IP address of a legitimate network device, which can be exploited for man in the middle attacks
+    - Defense:
+        - MAC address filtering: this defense strategy involves managing an approved list of devices based on their MAC addresses to allow them to connect to the network
+            - Note: this adds a layer of control but it is not full proof against sophisticated spoofing and advanced attacks
+        - You can leverage, ARP Spoofing detection by using an IDS (intrusion detection system) to recognize suspicious ARP requests
+- Layer 3 - Network
+    - Layer 3 the Network layer AKA the routing layer, is responsible for determining the travel path of data between servers, operating on an end to end basis and deciding how the data should be directed and routed from its source to its destination
+    - Associated Protocols:
+        - IP (internet protocol) - set of rules for routing and addressing data to the correct destination
+        - ICMP (internet control message protocol) - protocol that checks the receiving device is reachable and working to receive transmission
+    - Attacks:
+        - IP Spoofing: when an attacker masks their IP address to make it seem like its coming from a trusted source
+        - ICMP Attacks (DoS) - a type of denial of service attack where an adversary overwhelms the target with ping requests to render it unusable
+    - Defense:
+        - Firewalls - properly configuring firewalls for filtering that would block packets when the IP address is spoofed
+        - Rate Limiting - which limits count of ICMP requests from a single source, but can be overloaded when an attacker leverages many IP addresses
+        - IDS/IPS - leveraging an intrusion detection/prevention system using rules to recognize signatures and block ICMP attacks
+- Layer 4 - Transport
+    - the transport layer coordinates the transfer of data between systems and host, it operates on a service to service delivery, where it takes incoming data and ensures the right program receives that right data by using ports
+    - Associated Protocols:
+        - Transmission Control Protocol (TCP): favors reliable and used when order is important like file transfers
+        - User Datagram Protocol (UDP): favors efficiency, it is a faster connection but less reliable than TCP
+    - Attacks:
+        - SYN flood: which exploits the three way handshake process of TCP, where an attacker repeatedly sends SYN packets which can lead to a denial of service or be used for reconnaissance to find information on port states
+        - Smurf attack: which is another type of denial of service attack that takes advantage of Internet Control Messaging Protocol (ICMP) by overwhelming a target by flooding it with ping requests
+    - Defense:
+        - Rate-limit ICMP traffic: by limiting the amount of SYN inquiries, the network can avoid being overwhelmed
+        - Firewalls: configuring firewalls to identify and block specific network traffic patterns associated with SYN and smurf attacks
+- Layer 5 - Session
+    - The session layer manages syncing between two devices to establish a session, sessions allow networking protocols to identify users independent from L2 (MAC), L3 (IP), L4 (port number).
+        - tokens such as Cookies are used to maintain session information
+    - Associated protocols:
+        - NetBIOS (network basic input/output system): provides session services for communication between applications
+    - Attacks:
+        - session hijacking: taking over or stealing a target’s token to access a targeted system by impersonating the target user
+        - Man in the middle (MITM) attack: intercepting communication between two parties without their knowledge such as:
+            - Cross site scripting (XSS): web security vulnerability where attackers inject malicious scripts into web pages for potential exploitation
+    - Defense:
+        - secure socket layer (SSL) and transport security layer (TLS): using these communication protocols helps strengthen data transmission by encrypting data being transmitted between a client and server
+        - Hypertext transfer protocol secure (HTTPS): more secure than http, https combines http with ssl/tls to establish a secure connection to make it more challenging for attackers to inject scripts
+- Layer 6 - Presentation
+    - The presentation layer is responsible for data translation from network form to application form; it essentially presents data to the application. It also is responsible for encryption and decryption, providing confidentiality and security during data transmission
+    - Associated Protocols:
+        - Secure Socket Layer: ensuring the confidentiality of data being transmitted
+    - Attack:
+        - SSL hijacking: which occurs when an attacker intercepts and tampers with SSL-protected communication by exploiting SSL vulnerabilities
+    - Defense:
+        - HTTPS: using HTTPS over HTTP, using HTTPS ensures the data is encrypted when it is transmitted over the network
+- Layer 7- Application
+    - the layer we can see, where users interact with an application including mail, web browsers, etc.
+    - Associated Protocols:
+        - HTTP
+        - FTP (file transfer protocol): which facilitates the transfer of files between systems on a network
+        - DNS (domain name system): which resolves domain names to IP addresses
+        - POP3 (post office protocol 3): an email retrieval protocol used by email clients
+        - BitTorrent: a peer to peer file sharing protocol
+    - Attack:
+        - Viruses
+        - Worms
+        - Phishing
+        - Key Loggers
+    - Defense:
+        - Web Application Firewalls (WAFs): a tool that is designed to protect against web application vulnerabilities (helpful but not end all be all)
+            - it helps against the OWASP top 10 (Open Web Application Security Project): which is a list of web application security risks
+        - Software Updates: ensures that applications are patched with the latest security fixes to prevent exploitation
+        - Antivirus Software: added protection against viruses and malware
+        - Security Awareness Training: user education to mitigate and minimize phishing attempts and safe practices
+- Conclusion
+    - the OSI model is fundamental to networking concepts, and functions as a reference model to help in the communication across different disciplines
+    - Each of the seven layers plays a unique role in the transmission of data across a network, and each of the seven layers is accompanied by unique vulnerabilities calling for a holistic approach as the best option
+        - such as defense in depth strategies, which is the deployment of security measures throughout your network infrastructure by implementing a combination of physical security measures, network-based defenses, and cybersecurity practices at each layer of the OSI Model
+        - users can significantly improve their overall security posture and this approach helps in preventing and detecting attacks but also minimizes the impact of successful breaches.
